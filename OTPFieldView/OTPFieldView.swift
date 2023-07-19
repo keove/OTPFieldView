@@ -37,6 +37,7 @@ import UIKit
     func hasEnteredAllOTP(hasEnteredAll: Bool) -> Bool
 }
 
+
 @objc public enum DisplayType: Int {
     case circular
     case roundedCorner
@@ -74,7 +75,7 @@ import UIKit
     public var defaultBorderColor: UIColor = UIColor.gray
     public var filledBorderColor: UIColor = UIColor.clear
     public var errorBorderColor: UIColor?
-    
+    public var textColor: UIColor = .black
     public weak var delegate: OTPFieldViewDelegate?
     
     fileprivate var secureEntryData = [String]()
@@ -128,7 +129,7 @@ import UIKit
         otpField.delegate = self
         otpField.tag = index + 1
         otpField.font = fieldFont
-        
+        otpField.textColor = textColor
         // Set input type for OTP fields
         switch otpInputType {
         case .numeric:
