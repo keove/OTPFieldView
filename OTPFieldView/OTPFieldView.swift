@@ -37,6 +37,7 @@ import UIKit
     func hasEnteredAllOTP(hasEnteredAll: Bool) -> Bool
 }
 
+
 @objc public enum DisplayType: Int {
     case circular
     case roundedCorner
@@ -74,7 +75,7 @@ import UIKit
     public var defaultBorderColor: UIColor = UIColor.gray
     public var filledBorderColor: UIColor = UIColor.clear
     public var errorBorderColor: UIColor?
-    
+    public var textColor: UIColor = .black
     public weak var delegate: OTPFieldViewDelegate?
     
     fileprivate var secureEntryData = [String]()
@@ -128,7 +129,7 @@ import UIKit
         otpField.delegate = self
         otpField.tag = index + 1
         otpField.font = fieldFont
-        
+        otpField.textColor = textColor
         // Set input type for OTP fields
         switch otpInputType {
         case .numeric:
@@ -241,6 +242,22 @@ import UIKit
                     }
                 }
             }
+        }
+    }
+    
+    func roundCorners(radius:CGFloat,borderWidth:CGFloat=0.0,borderColor:UIColor = .black,shadowRadius:CGFloat=0.0,shadowOpacity:Float=0.0,shadowOffset:CGSize=CGSize.zero) {
+        
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        
+        if shadowRadius > 0.0 {
+            self.layer.shadowRadius = shadowRadius
+            self.layer.shadowOffset = shadowOffset
+            self.layer.shadowOpacity = shadowOpacity
+            self.layer.shadowColor = UIColor.darkGray.cgColor
         }
     }
     

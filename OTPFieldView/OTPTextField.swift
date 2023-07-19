@@ -113,6 +113,22 @@ import UIKit
         layer.addSublayer(shapeLayer)
     }
     
+    func roundCorners(radius:CGFloat,borderWidth:CGFloat=0.0,borderColor:UIColor = .black,shadowRadius:CGFloat=0.0,shadowOpacity:Float=0.0,shadowOffset:CGSize=CGSize.zero) {
+        
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = radius
+        self.clipsToBounds = true
+        
+        if shadowRadius > 0.0 {
+            self.layer.shadowRadius = shadowRadius
+            self.layer.shadowOffset = shadowOffset
+            self.layer.shadowOpacity = shadowOpacity
+            self.layer.shadowColor = UIColor.darkGray.cgColor
+        }
+    }
+    
     // Helper function to create a underlined bottom view
     fileprivate func addBottomView() {
         let path = UIBezierPath()
