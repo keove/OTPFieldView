@@ -57,7 +57,7 @@ import UIKit
     
     /// Different display type for text fields.
     
-    
+    public var cornerRad: CGFloat = 4
     public var displayType: DisplayType = .circular
     public var fieldsCount: Int = 4
     public var otpInputType: KeyboardType = .numeric
@@ -130,6 +130,7 @@ import UIKit
         otpField.tag = index + 1
         otpField.font = fieldFont
         otpField.textColor = textColor
+        otpField.cornerRad = cornerRad
         // Set input type for OTP fields
         switch otpInputType {
         case .numeric:
@@ -244,23 +245,6 @@ import UIKit
             }
         }
     }
-    
-    func roundCorners(radius:CGFloat,borderWidth:CGFloat=0.0,borderColor:UIColor = .black,shadowRadius:CGFloat=0.0,shadowOpacity:Float=0.0,shadowOffset:CGSize=CGSize.zero) {
-        
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.masksToBounds = false
-        self.layer.cornerRadius = radius
-        self.clipsToBounds = true
-        
-        if shadowRadius > 0.0 {
-            self.layer.shadowRadius = shadowRadius
-            self.layer.shadowOffset = shadowOffset
-            self.layer.shadowOpacity = shadowOpacity
-            self.layer.shadowColor = UIColor.darkGray.cgColor
-        }
-    }
-    
 }
 
 extension OTPFieldView: UITextFieldDelegate {

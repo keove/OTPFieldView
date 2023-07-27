@@ -35,6 +35,8 @@ import UIKit
     /// Border color info for field
     public var otpBorderColor: UIColor = UIColor.black
     
+    public var cornerRad: CGFloat = 4
+    
     /// Border width info for field
     public var otpBorderWidth: CGFloat = 2
     
@@ -52,13 +54,15 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
+    
+    
     public func initalizeUI(forFieldType type: DisplayType) {
         switch type {
         case .circular:
             layer.cornerRadius = bounds.size.width / 2
             break
         case .roundedCorner:
-            layer.cornerRadius = 4
+            layer.cornerRadius = cornerRad
             break
         case .square:
             layer.cornerRadius = 0
@@ -111,22 +115,6 @@ import UIKit
         shapeLayer.strokeColor = otpBorderColor.cgColor
         
         layer.addSublayer(shapeLayer)
-    }
-    
-    func roundCorners(radius:CGFloat,borderWidth:CGFloat=0.0,borderColor:UIColor = .black,shadowRadius:CGFloat=0.0,shadowOpacity:Float=0.0,shadowOffset:CGSize=CGSize.zero) {
-        
-        self.layer.borderWidth = borderWidth
-        self.layer.borderColor = borderColor.cgColor
-        self.layer.masksToBounds = false
-        self.layer.cornerRadius = radius
-        self.clipsToBounds = true
-        
-        if shadowRadius > 0.0 {
-            self.layer.shadowRadius = shadowRadius
-            self.layer.shadowOffset = shadowOffset
-            self.layer.shadowOpacity = shadowOpacity
-            self.layer.shadowColor = UIColor.darkGray.cgColor
-        }
     }
     
     // Helper function to create a underlined bottom view
